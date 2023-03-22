@@ -1,5 +1,8 @@
 [package]
 name = "mikasa-utils"
+description = "A collection of utilities for Mikasa"
+authors = ["Mikasa team <@mikasa-ack>"]
+license = "MIT"
 version = "0.1.0"
 edition = "2021"
 
