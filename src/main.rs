@@ -19,11 +19,34 @@ enum Commands {
 }
 
 fn main() {
-    let cli = Cli::parse();
-    match cli.command {
-        Some(Commands::InstantiateGrid { dimension, execute }) => {
-            command::instantiate_grid(dimension.unwrap_or(10), execute);
+    let mut grid = create_grid(30, 30);
+    insert_cross_pattern(&mut grid);
+    display_grid(&grid);
+}
+
+fn create_grid(rows: usize, cols: usize) -> Vec<Vec<bool>> {
+    vec![vec![false; cols]; rows]
+}
+
+fn insert_cross_pattern(grid: &mut Vec<Vec<bool>>) {
+    let mid_row = grid.len() / 2;
+    let mid_col = grid[0].len() / 2;
+
+    for row in 0..grid.len() {
+        for col in 0..grid[0].len() {
+            if row == mid_row || col == mid_col {
+                grid[row][col] = true;
+            }
         }
-        None => {}
     }
+}
+
+fn display_grid(grid: &Vec<Vec<bool>>) {
+    println!("{:?}", grid);
+    // for row in grid {
+    //     for cell in row {
+    //         print!("{} ", if *cell { "█" } else { " " });
+    //     }
+    //     println!();
+    // }
 }
